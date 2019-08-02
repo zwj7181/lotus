@@ -3,28 +3,29 @@
  */
 import React from 'react';
 import { connect } from 'dva';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout } from 'antd';
+import SiderMenu from '@/components/SiderMenu';
 import styles from './index.less';
 
-const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 class BasicLayout extends React.Component {
   componentDidMount() {
     const {
       dispatch,
-      route: { routes, path },
+      route: { routes },
     } = this.props;
-    console.log('router', routes, window.g_routes)
+    // 全部routes window.g_routes
     dispatch({
       type: 'menu/getMenuData',
       payload: {
-        routes: window.g_routes,
+        routes,
       },
     });
   }
 
   render() {
+    const { menuData } = this.props;
     return (
       <Layout className={styles.wrapper}>
         <Header className={styles.header}>
@@ -35,7 +36,12 @@ class BasicLayout extends React.Component {
             width={280}
             className={styles.sider}
           >
-  
+            <SiderMenu
+              theme="light"
+              onCollapse={() => {}}
+              menuData={menuData}
+              {...this.props}
+            />
           </Sider>
           <Layout className={styles.main}>
             <Content className={styles.content}>
