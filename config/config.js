@@ -1,5 +1,7 @@
 
 // ref: https://umijs.org/config/
+import pageRoutes from './router.config';
+
 export default {
   treeShaking: true,
   plugins: [
@@ -22,4 +24,6 @@ export default {
       },
     }],
   ],
+  // 路由配置
+  routes: pageRoutes,
 }
