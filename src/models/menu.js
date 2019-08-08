@@ -18,7 +18,6 @@ function formatter(data) {
         name,
         title,
       };
-      console.log('787878', result)
       if (item.routes) {
         const children = formatter(item.routes);
         // Reduce memory usage
@@ -98,7 +97,6 @@ export default {
       const originalMenuData = memoizeOneFormatter(routes);
       const menuData = filterMenuData(originalMenuData);
       const breadcrumbNameMap = memoizeOneGetBreadcrumbNameMap(originalMenuData);
-      console.log('0000000', originalMenuData, menuData, breadcrumbNameMap)
       yield put({
         type: 'save',
         payload: { menuData, breadcrumbNameMap, routerData: routes },
